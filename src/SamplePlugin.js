@@ -12,6 +12,7 @@ import {
 const PLUGIN_NAME = "SamplePlugin";
 
 import "./listeners/CustomListeners";
+import { Actions } from "@twilio/flex-ui";
 //import { LogManager } from '@twilio/flex-ui/src/core/LogManager';
 
 export default class SamplePlugin extends FlexPlugin {
@@ -29,18 +30,13 @@ export default class SamplePlugin extends FlexPlugin {
   init(flex, manager) {
     this.registerReducers(manager);
 
-    const flex_manager = Manager.getInstance();
-
-    flex_manager.chatClient.getSubscribedChannels().then(function (paginator) {
-      if (paginator.items[0]) {
-        let time_created = paginator.items[0].dateCreated.getTimezoneOffset();
-        console.log("the time is" + time_created);
-        let currentTime = calcTime(time_created);
-        let hours = currentTime.getHours();
-        disableComponent(hours);
-        console.log("Run init functions");
-      }
-    });
+    var SIDParam = window.location.pathname;
+    var splitStr = SIDParam.split("/");
+    console.log("loging the SID", splitStr[2]);
+    if (splitStr[2]) {
+      Actions.invokeAction("SelectTask", { sid: splitStr[2] });
+      console.log("Here helps ");
+    }
   }
   /**
    * Registers the plugin reducers
