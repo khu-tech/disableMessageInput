@@ -11,7 +11,7 @@ Actions.addListener("afterSelectTask", async (payload) => {
   // and conference metadata are captured on the task
 
   console.log(
-    "Customer's locale Timezone Offset",
+    "Customer's local Timezone Offset",
     payload.task.dateCreated.getTimezoneOffset()
   );
 
@@ -22,7 +22,7 @@ Actions.addListener("afterSelectTask", async (payload) => {
   disableComponent(local_hours);
 });
 
-export const calcTime = function (offset) {
+const calcTime = function (offset) {
   var d = new Date();
   const currentOffset = d.getTimezoneOffset();
   var utc = d.getTime();
@@ -31,7 +31,8 @@ export const calcTime = function (offset) {
   return nd;
 };
 
-export const disableComponent = function (hours) {
+//Set an additional initialValue to test disabling component after 9 sec; remove the initialValue setting in production code
+const disableComponent = function (hours) {
   if (hours > 9 || hours < 17 || initialValue > 0) {
     waitForDisable(hours);
   } else {
@@ -44,12 +45,10 @@ function waitForDisable(hours) {
   clearTime = setInterval(function () {
     playWithProps(hours);
   }, 5000);
-  console.log("Finish setting Interval");
   initialArr.push(clearTime);
-  console.log("put multiple intervals", initialArr);
 }
 
-export const disableInput = function () {
+const disableInput = function () {
   manager.updateConfig({
     componentProps: {
       MessageInput: {
@@ -65,7 +64,7 @@ const playWithProps = function (hours) {
     disableInput();
     console.log("clear interval");
   } else {
-    console.log("initial the value");
+    console.log("initialize the value");
     initialValue = initialValue - 1000;
   }
 };
