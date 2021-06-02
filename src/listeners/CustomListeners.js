@@ -6,20 +6,18 @@ let initialValue = 9000;
 var clearTime;
 var initialArr = [];
 
+//Listen to Select Task Action and get the customer's local timezone offset to trigger
+//the disable component function
 Actions.addListener("afterSelectTask", async (payload) => {
-  // Listening for this event as a last resort check to ensure call
-  // and conference metadata are captured on the task
-
-  console.log(
-    "Customer's local Timezone Offset",
-    payload.task.dateCreated.getTimezoneOffset()
-  );
-
   //Get the expected time in customer's time zone
-  const current_time = calcTime(payload.task.dateCreated.getTimezoneOffset());
-  const local_hours = current_time.getHours();
-  console.log("This is the local hours" + local_hours);
-  disableComponent(local_hours);
+  try {
+    const current_time = calcTime(payload.task.dateCreated.getTimezoneOffset());
+    const local_hours = current_time.getHours();
+    console.log("This is the local hours" + local_hours);
+    disableComponent(local_hours);
+  } catch (error) {
+    console.error("no payload from this task");
+  }
 });
 
 const calcTime = function (offset) {
