@@ -1,4 +1,4 @@
-# Twilio Flex Plugin to disable message input area when it's outside of customers' business hours
+# Twilio Flex Plugin to disable message input area
 
 Twilio Flex Plugins allow you to customize the appearance and behavior of [Twilio Flex](https://www.twilio.com/flex). If you want to learn more about the capabilities and how to use the API, check out our [Flex documentation](https://www.twilio.com/docs/flex).
 
