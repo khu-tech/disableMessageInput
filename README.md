@@ -27,10 +27,7 @@ Finally, install the [Flex Plugin extension](https://github.com/twilio-labs/plug
 twilio plugins:install @twilio-labs/plugin-flex@beta
 ```
 
-## Development
+## Development and Test
+Run `twilio flex:plugins:start` to run/test the Plugin locally, and configure any changes.
 
 Run `twilio flex:plugins --help` to see all the commands we currently support. For further details on Flex Plugins refer to our documentation on the [Twilio Docs](https://www.twilio.com/docs/flex/developer/plugins/cli) page.
-
-## Test
-
-Run `twilio flex:plugins:start` to run/test the Plugin locally, and configure any changes.
